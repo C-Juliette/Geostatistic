@@ -1,0 +1,16 @@
+#' Variance
+#'
+#' Returns the biased variance (division by n, not by (n-1))
+#'
+#' @param M a vector or a matrix, with or without NA
+#'
+#' @return v, a float (variance )
+#' @export
+#'
+#' @examples
+#' variance(c(1, 2, 3))
+#' variance (matrix(rbinom(2*2, 1, 0.5), nrow = 2))
+#'
+variance <- function(M){
+  return(mean(M**2, na.rm =T)- mean(M, na.rm =T)**2)
+}
