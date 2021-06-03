@@ -1,15 +1,14 @@
 Package: MonPackage
-Title: What the Package Does (One Line, Title Case)
+Title: Geostatistic maps
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Juliette",
+           family = "Chiapello",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "chiapellojuliette@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: This package considers randomly generated matrix as maps. It plots the maps and indicates the variance and the distribution of a realization. It does moving average to generate new maps which are spatially structured. It calculates the covariance between points on spatial structured maps. And it subsamples maps, with or without an average of the neighbored points.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
