@@ -11,6 +11,11 @@
 #' @examples
 #' moving_average(matrix(rnorm(10*10, 0,1), nrow = 10), r=2)
 moving_average <- function(Z, r){
+  if (r < 0 ){paste("Error : r must be positive or zero")}
+  else if (isInteger(r) == F){paste("Error : r must be an integer")}
+  else if (is.matrix(Z) == F & is.data.frame(Z) == F){paste("Error : Z must be a matrix/dataframe/tibble")}
+  else{
+  Z <- as.matrix(Z)
   nblignesZ <- dim(Z)[1]
   nbcolonnesZ <- dim(Z)[2]
   nblignesY <- nblignesZ - 2*r
@@ -25,4 +30,6 @@ moving_average <- function(Z, r){
     }
   }
   return (Y)
+  }
 }
+
