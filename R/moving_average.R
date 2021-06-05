@@ -1,3 +1,5 @@
+isInteger <- ttutils::isInteger
+
 #' moving average
 #'
 #' Create a new map/matrix by doing a moving average on a matrix
@@ -11,10 +13,11 @@
 #' @examples
 #' moving_average(matrix(rnorm(10*10, 0,1), nrow = 10), r=2)
 moving_average <- function(Z, r){
-  if (r < 0 ){paste("Error : r must be positive or zero")}
-  else if (isInteger(r) == F){paste("Error : r must be an integer")}
-  else if (is.matrix(Z) == F & is.data.frame(Z) == F){paste("Error : Z must be a matrix/dataframe/tibble")}
-  else{
+
+  if (!isInteger(r)){stop("r must be an integer")}
+  if (r < 0 ){stop("r must be >= 0")}
+  if (is.matrix(Z) == F & is.data.frame(Z) == F){stop("Z must be a matrix/dataframe/tibble")}
+
   Z <- as.matrix(Z)
   nblignesZ <- dim(Z)[1]
   nbcolonnesZ <- dim(Z)[2]
@@ -30,6 +33,6 @@ moving_average <- function(Z, r){
     }
   }
   return (Y)
-  }
+
 }
 
