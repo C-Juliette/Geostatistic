@@ -24,4 +24,5 @@ Imports:
     stringr,
     viridis,
     data.table,
-    scales
+    scales,
+    ttutils
