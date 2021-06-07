@@ -17,19 +17,22 @@ moving_average <- function(Z, r){
   if (!isInteger(r)){stop("r must be an integer")}
   if (r < 0 ){stop("r must be >= 0")}
   if (is.matrix(Z) == F & is.data.frame(Z) == F){stop("Z must be a matrix/dataframe/tibble")}
+  if ( 2*r+1 > dim(Z)[1] | 2*r+1 > dim(Z)[2]){stop("The grid must be larger than the window. Decrease r or increase the grid size")}
+
+  #(2*r+1) < dim(Z)[1] | (2*r+1) < dim(Z)[2]
 
   Z <- as.matrix(Z)
-  nblignesZ <- dim(Z)[1]
-  nbcolonnesZ <- dim(Z)[2]
-  nblignesY <- nblignesZ - 2*r
-  nbcolonnesY <- nbcolonnesZ - 2*r
+  nrowsZ <- dim(Z)[1]
+  ncolsZ <- dim(Z)[2]
+  nrowsY <- nrowsZ - 2*r
+  ncolsY <- ncolsZ - 2*r
 
-  Y <- matrix(data = rep(0, nblignesY*nbcolonnesY), nrow = nblignesY)
+  Y <- matrix(data = rep(0, nrowsY*ncolsY), nrow = nrowsY)
 
-  for(i in (r+1):(nblignesZ-r)){
-    for(j in (r+1):(nbcolonnesZ-r)){
-      fenetre <- Z[(i-r):(i+r), (j-r):(j+r)]
-      Y[i-r,j-r] <- mean(fenetre)
+  for(i in (r+1):(nrowsZ-r)){
+    for(j in (r+1):(ncolsZ-r)){
+      window <- Z[(i-r):(i+r), (j-r):(j+r)]
+      Y[i-r,j-r] <- mean(window)
     }
   }
   return (Y)

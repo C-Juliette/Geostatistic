@@ -1,3 +1,12 @@
+library(ggplot2)
+str_c <- stringr::str_c
+#ggplot <- ggplot2::ggplot
+#aes <- ggplot2::aes
+#geom_tile <- ggplot2::geom_tile
+#scale_fill_viridis_c <- ggplot2::scale_fill_viridis_c
+#labs <- ggplot2::labs
+#guides <- ggplot2::guides
+
 #' Plot a matrix
 #'
 #' @param M a matrix
@@ -17,7 +26,7 @@
 #' plot_matrix(matrix(rbinom(10*10, 1, 0.5), nrow = 10))
 plot_matrix <- function(M, r= "", paletteinf = "", palettesup = "", titre = "", nom_axeX = "", nom_axeY = "", echelle = "Echelle"){
   titre <- str_c(titre, "   Var = " ,as.character(round(variance(M), 4)),  sep = "")
-  M <- long(M) # trois colonnes : les i, les j, les valeurs
+  M <- M |> long_shaped_matrix() # trois colonnes : les i, les j, les valeurs
   p <- ggplot(data = M, aes(x = Var1 -0.5, y = Var2 - 0.5) )
   if(r != ""){p <- ggplot(M, aes(x = Var1 -0.5+r , y = Var2 -0.5+r, z= value, fill=value))}
   p <- p +
@@ -29,7 +38,8 @@ plot_matrix <- function(M, r= "", paletteinf = "", palettesup = "", titre = "", 
          x = nom_axeX,
          y = nom_axeY) +
     guides(fill = guide_colorbar(title = echelle))+
-    scale_y_continuous(breaks= pretty_breaks())+
-    scale_x_continuous(breaks= pretty_breaks())
+    scale_y_continuous(breaks= scales::pretty_breaks())+
+    scale_x_continuous(breaks= scales::pretty_breaks())
   return(p)
-}
+  }
+
