@@ -25,4 +25,6 @@ Imports:
     viridis,
     data.table,
     scales,
-    ttutils
+    ttutils,
+    tibble,
+    stats

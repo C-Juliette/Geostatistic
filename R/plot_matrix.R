@@ -1,11 +1,13 @@
-library(ggplot2)
-str_c <- stringr::str_c
-#ggplot <- ggplot2::ggplot
-#aes <- ggplot2::aes
-#geom_tile <- ggplot2::geom_tile
-#scale_fill_viridis_c <- ggplot2::scale_fill_viridis_c
-#labs <- ggplot2::labs
-#guides <- ggplot2::guides
+#library(ggplot2)
+ggplot <- ggplot2::ggplot
+aes <- ggplot2::aes
+geom_tile <- ggplot2::geom_tile
+scale_fill_viridis_c <- ggplot2::scale_fill_viridis_c
+labs <- ggplot2::labs
+guides <- ggplot2::guides
+guide_colorbar <- ggplot2::guide_colorbar
+scale_y_continuous <- ggplot2::scale_y_continuous
+scale_x_continuous <- ggplot2::scale_x_continuous
 
 #' Plot a matrix
 #'
@@ -28,8 +30,8 @@ plot_matrix <- function(M, r= "", paletteinf = "", palettesup = "", titre = "", 
   if (is.data.frame(M)){M <- as.matrix(M)}
   if (!is.numeric(M)){stop("M must contain numbers")}
 
-  if(titre == ""){titre <- str_c("Var = " ,as.character(round(variance(M), 4)),  sep = "")}
-  else{titre <- str_c(titre, "  -  Var = " ,as.character(round(variance(M), 4)),  sep = "")}
+  if(titre == ""){titre <- stringr::str_c("Var = " ,as.character(round(variance(M), 4)),  sep = "")}
+  else{titre <- stringr::str_c(titre, "  -  Var = " ,as.character(round(variance(M), 4)),  sep = "")}
   M <- M |> long_shaped_matrix() # trois colonnes : les i, les j, les valeurs
   p <- ggplot(data = M, aes(x = Var1 -0.5, y = Var2 - 0.5) )
   if(r != ""){p <- ggplot(M, aes(x = Var1 -0.5+r , y = Var2 -0.5+r, z= value, fill=value))}
