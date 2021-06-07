@@ -4,7 +4,7 @@ isInteger <- ttutils::isInteger
 #'
 #' Create a new map/matrix by doing a moving average on a matrix
 #'
-#' @param Z matrix
+#' @param Z matrix/dataframe
 #' @param r integer : the radius of the window of the moving average. Ex : r = 1 implies a window of 3*3
 #'
 #' @return matrix (side effects imply a smaller matrix than the Z matrix passed in parametre)
@@ -16,12 +16,11 @@ moving_average <- function(Z, r){
 
   if (!isInteger(r)){stop("r must be an integer")}
   if (r < 0 ){stop("r must be >= 0")}
-  if (is.matrix(Z) == F & is.data.frame(Z) == F){stop("Z must be a matrix/dataframe/tibble")}
+  if (!is.numeric(Z)){stop("Z must be a matrix/dataframe of numbers")}
+  Z <- as.matrix(Z)
   if ( 2*r+1 > dim(Z)[1] | 2*r+1 > dim(Z)[2]){stop("The grid must be larger than the window. Decrease r or increase the grid size")}
 
-  #(2*r+1) < dim(Z)[1] | (2*r+1) < dim(Z)[2]
 
-  Z <- as.matrix(Z)
   nrowsZ <- dim(Z)[1]
   ncolsZ <- dim(Z)[2]
   nrowsY <- nrowsZ - 2*r

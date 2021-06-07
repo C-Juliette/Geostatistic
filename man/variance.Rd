@@ -7,10 +7,10 @@
 variance(M)
 }
 \arguments{
-\item{M}{a vector or a matrix, with or without NA}
+\item{M}{a number, a vector or a matrix, with or without NA}
 }
 \value{
-v, a float (variance )
+a float (variance )
 }
 \description{
 Returns the biased variance (division by n, not by (n-1))

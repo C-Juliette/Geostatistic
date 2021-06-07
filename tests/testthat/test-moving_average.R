@@ -1,4 +1,15 @@
 ######################### REGULAR TESTS #######################
+test_that("Regular test - unchanged grid when r = 0", {
+  # arrange
+  Z <- matrix(rnorm(5*5, 2, 4), nrow = 5)
+  # act
+  actual <- moving_average(Z,0)
+  # assert
+  expected <- Z
+  expect_equal(actual, expected)
+})
+
+
 test_that("Regular test - full of zeros grid", {
   # arrange
   set.seed(1)
@@ -45,14 +56,63 @@ test_that("Regular test - Bernoulli grid", {
   expect_identical(actual, expected)
 })
 
+test_that("Regular test - Z is a number", {
+  # arrange
+  Z <- 2
+  # act
+  actual <- moving_average(Z,0)
+  # assert
+  expected <- matrix(2)
+  expect_identical(actual, expected)
+})
+
+test_that("Regular test - Z is a vector", {
+  # arrange
+  Z <- c(1, 2, 3, 4)
+  # act
+  actual <- moving_average(Z,0)
+  # assert
+  expected <- matrix(Z)
+  expect_identical(actual, expected)
+})
+
 
 
 ######################## ANOMALY TESTS #####################
-test_that("Anomaly test - error when r parametre isn't a number", {
+
+############## Z ANOMALIES ####################
+
+test_that("Anomaly test - error when Z parametre isn't a matrix/dataframe - test 1", {
+  # arrange
+  Z <- "matrix(rbinom(5*5, 1, 0.5), nrow = 5)"
+  # act & assert
+  expect_error(moving_average(Z, 1), "^Z must be a matrix/dataframe of numbers$")
+})
+
+test_that("Anomaly test - error when Z parametre isn't a matrix/dataframe - test 2", {
+  # arrange
+  f <- function(){return("I am a function")}
+  # act & assert
+  expect_error(moving_average(f, 2), "^Z must be a matrix/dataframe of numbers$")
+})
+
+
+############## r ANOMALIES ####################
+
+
+test_that("Anomaly test - error when r parametre isn't a number - test 1", {
   # arrange
   Z <- matrix(rbinom(5*5, 1, 0.5), nrow = 5)
   # act & assert
   expect_error(moving_average(Z, "a"), "^r must be an integer$")
+})
+
+test_that("Anomaly test - error when r isn't a number - test 2", {
+  # arrange
+  f <- function(){return("I am a function")}
+  Z <- matrix(rbinom(3*10, 1, 0.5), nrow = 3)
+  # act & assert
+  expect_error(moving_average(Z, f), "^r must be an integer$")
 })
 
 test_that("Anomaly test - error when r parametre is a floating number", {

@@ -7,7 +7,7 @@
 moving_average(Z, r)
 }
 \arguments{
-\item{Z}{matrix}
+\item{Z}{matrix/dataframe}
 
 \item{r}{integer : the radius of the window of the moving average. Ex : r = 1 implies a window of 3*3}
 }

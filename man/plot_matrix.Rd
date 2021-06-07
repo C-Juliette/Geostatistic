@@ -16,7 +16,7 @@ plot_matrix(
 )
 }
 \arguments{
-\item{M}{a matrix}
+\item{M}{a matrix/vector/number/dataframe of numbers}
 
 \item{r}{a radius for the window of the moving average}
 

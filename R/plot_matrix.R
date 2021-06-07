@@ -9,7 +9,7 @@ str_c <- stringr::str_c
 
 #' Plot a matrix
 #'
-#' @param M a matrix
+#' @param M a matrix/vector/number/dataframe of numbers
 #' @param r a radius for the window of the moving average
 #' @param paletteinf extreme color of color scale
 #' @param palettesup extreme color of color scale
@@ -25,7 +25,11 @@ str_c <- stringr::str_c
 #'
 #' plot_matrix(matrix(rbinom(10*10, 1, 0.5), nrow = 10))
 plot_matrix <- function(M, r= "", paletteinf = "", palettesup = "", titre = "", nom_axeX = "", nom_axeY = "", echelle = "Echelle"){
-  titre <- str_c(titre, "   Var = " ,as.character(round(variance(M), 4)),  sep = "")
+  if (is.data.frame(M)){M <- as.matrix(M)}
+  if (!is.numeric(M)){stop("M must contain numbers")}
+
+  if(titre == ""){titre <- str_c("Var = " ,as.character(round(variance(M), 4)),  sep = "")}
+  else{titre <- str_c(titre, "  -  Var = " ,as.character(round(variance(M), 4)),  sep = "")}
   M <- M |> long_shaped_matrix() # trois colonnes : les i, les j, les valeurs
   p <- ggplot(data = M, aes(x = Var1 -0.5, y = Var2 - 0.5) )
   if(r != ""){p <- ggplot(M, aes(x = Var1 -0.5+r , y = Var2 -0.5+r, z= value, fill=value))}
