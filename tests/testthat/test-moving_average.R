@@ -12,7 +12,6 @@ test_that("Regular test - unchanged grid when r = 0", {
 
 test_that("Regular test - full of zeros grid", {
   # arrange
-  set.seed(1)
   Z <- matrix(rep(0, 5*5), nrow = 5)
   # act
   actual <- moving_average(Z,2)
@@ -24,7 +23,6 @@ test_that("Regular test - full of zeros grid", {
 
 test_that("Regular test - full of ones grid (and 5*5 window)", {
   # arrange
-  set.seed(1)
   Z <- matrix(rep(1, 5*5), nrow = 5)
   # act
   actual <- moving_average(Z,2)
@@ -35,7 +33,6 @@ test_that("Regular test - full of ones grid (and 5*5 window)", {
 
 test_that("Regular test - full of ones grid (and 3*3 window)", {
   # arrange
-  set.seed(1)
   Z <- matrix(rep(1, 5*5), nrow = 5)
   # act
   actual <- moving_average(Z,1)
@@ -62,7 +59,7 @@ test_that("Regular test - Z is a number", {
   # act
   actual <- moving_average(Z,0)
   # assert
-  expected <- matrix(2)
+  expected <- 2
   expect_identical(actual, expected)
 })
 
@@ -119,7 +116,7 @@ test_that("Anomaly test - error when r parametre is a floating number", {
   # arrange
   Z <- matrix(rbinom(5*5, 1, 0.5), nrow = 5)
   # act & assert
-  expect_error(moving_average(Z, 0.5), "^r must be an integer$")
+  expect_error(moving_average(Z, 0.2), "^r must be an integer$")
 })
 
 test_that("Anomaly test - error when r parametre is less than zero", {
