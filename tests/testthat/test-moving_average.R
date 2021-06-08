@@ -59,8 +59,8 @@ test_that("Regular test - Z is a number", {
   # act
   actual <- moving_average(Z,0)
   # assert
-  expected <- 2
-  expect_identical(actual, expected)
+  expected <- matrix(2)
+  expect_equal(actual, expected)
 })
 
 test_that("Regular test - Z is a vector", {
