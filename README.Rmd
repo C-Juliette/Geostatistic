@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # MonPackage
 
 <!-- badges: start -->
-[![check-standard](https://github.com/C-Juliette/Geostatistic/workflows/check-standard/badge.svg)](https://github.com/C-Juliette/Geostatistic/actions)
+[![R-CMD-check](https://github.com/C-Juliette/Geostatistic/workflows/R-CMD-check/badge.svg)](https://github.com/C-Juliette/Geostatistic/actions)
 [![test-coverage](https://github.com/C-Juliette/Geostatistic/workflows/test-coverage/badge.svg)](https://github.com/C-Juliette/Geostatistic/actions)
 [![Codecov test coverage](https://codecov.io/gh/C-Juliette/Geostatistic/branch/main/graph/badge.svg)](https://codecov.io/gh/C-Juliette/Geostatistic?branch=main)
 <!-- badges: end -->
