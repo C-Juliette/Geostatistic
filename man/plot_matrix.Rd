@@ -12,7 +12,7 @@ plot_matrix(
   titre = "",
   nom_axeX = "",
   nom_axeY = "",
-  echelle = "Echelle"
+  echelle = "Scale"
 )
 }
 \arguments{

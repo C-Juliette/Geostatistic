@@ -26,26 +26,27 @@ scale_x_continuous <- ggplot2::scale_x_continuous
 #' @examples
 #'
 #' plot_matrix(matrix(rbinom(10*10, 1, 0.5), nrow = 10))
-plot_matrix <- function(M, r= "", paletteinf = "", palettesup = "", titre = "", nom_axeX = "", nom_axeY = "", echelle = "Echelle"){
-  if (is.data.frame(M)){M <- as.matrix(M)}
+plot_matrix <- function(M, r = "", paletteinf = "", palettesup = "", titre = "", nom_axeX = "", nom_axeY = "", echelle = "Scale"){
+ # if (is.data.frame(M)){M <- as.matrix(M)}
   if (!is.numeric(M)){stop("M must contain numbers")}
 
-  if(titre == ""){titre <- stringr::str_c("Var = " ,as.character(round(variance(M), 4)),  sep = "")}
-  else{titre <- stringr::str_c(titre, "  -  Var = " ,as.character(round(variance(M), 4)),  sep = "")}
+ # if(titre == ""){titre <- stringr::str_c("Var = " ,as.character(round(variance(M), 4)),  sep = "")}
+  #else{titre <- stringr::str_c(titre, "  -  Var = " ,as.character(round(variance(M), 4)),  sep = "")}
   M <- M |> long_shaped_matrix() # trois colonnes : les i, les j, les valeurs
-  p <- ggplot(data = M, aes(x = Var1 -0.5, y = Var2 - 0.5) )
-  if(r != ""){p <- ggplot(M, aes(x = Var1 -0.5+r , y = Var2 -0.5+r, z= value, fill=value))}
+  #if(r == ""){
+  p <- ggplot(data = M, aes(x = .data$Var1 - 0.5, y = .data$Var2 - 0.5))#}#, z= .data$value, fill=.data$value))}
+  #else {p <- ggplot(M, aes(x = .data$Var1 - 0.5+r , y = .data$Var2 - 0.5+r))}#, z= .data$value, fill=.data$value))}#
   p <- p +
-    geom_tile(aes(fill = value))
-  if(paletteinf != "" & palettesup != ""){p <- p+scale_fill_viridis_c(option = "B", direction = -1, limits = c(paletteinf, palettesup))}
-  else{p <- p+scale_fill_viridis_c(option = "B", direction = -1)}
-  p <- p +
-    labs(title = titre,
-         x = nom_axeX,
-         y = nom_axeY) +
-    guides(fill = guide_colorbar(title = echelle))+
-    scale_y_continuous(breaks= scales::pretty_breaks())+
-    scale_x_continuous(breaks= scales::pretty_breaks())
+    geom_tile(aes(fill = .data$value))
+  #if(paletteinf != "" & palettesup != ""){p <- p+scale_fill_viridis_c(option = "B", direction = -1, limits = c(paletteinf, palettesup))}
+  #else{p <- p+scale_fill_viridis_c(option = "B", direction = -1)}
+  #p <- p +
+  #  labs(title = titre,
+  #       x = nom_axeX,
+  #       y = nom_axeY) +
+  #  guides(fill = guide_colorbar(title = echelle))+
+  #  scale_y_continuous(breaks= scales::pretty_breaks())+
+  #  scale_x_continuous(breaks= scales::pretty_breaks())
   return(p)
   }
 

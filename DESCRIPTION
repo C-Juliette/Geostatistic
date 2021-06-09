@@ -28,4 +28,5 @@ Imports:
     scales,
     ttutils,
     tibble,
-    stats
+    stats,
+    rlang
