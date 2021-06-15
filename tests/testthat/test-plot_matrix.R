@@ -15,21 +15,24 @@ scale_x_continuous <- ggplot2::scale_x_continuous
 #
 #  #titre <- stringr::str_c("Var = " ,as.character(round(variance(M), 4)),  sep = "")
 #  p <- ggplot(long_shaped_matrix(M), aes(x = .data$Var1 -0.5, y = .data$Var2 -0.5)) + #, z= .data$value, fill=.data$value)) +
-#   geom_tile(aes(fill = value)) #+
-#   #scale_fill_viridis_c(option = "B", direction = -1) +
+#   geom_tile(aes(fill = value)) +
+#   scale_fill_viridis_c(option = "B", direction = -1) #+
 #   #labs(title = titre,
 #   #     x = "",
 #   #     y = "") +
 #   #guides(fill = guide_colorbar(title = "Scale"))+
 #   #scale_y_continuous(breaks = scales::pretty_breaks())+
 #   #scale_x_continuous(breaks = scales::pretty_breaks())
+#
+#  disp_hist_base <- function() hist(mtcars$disp)
 #  # act
 #  actual <- plot_matrix(M)
 #  # assert
 #  expected <- p
-#  expect_equal(actual, expected)
+#  expect_doppelganger("actual", actual)
 #})
-
+#
+#
 
 
 
@@ -53,3 +56,17 @@ test_that("Anomaly test - error when M does not contain number - test 2", {
   # act & assert
   expect_error(plot_matrix(M), "^M must contain numbers$")
 })
+
+#
+#library("ggplot2")
+#
+#test_that("plots have known output", {
+#  disp_hist_base <- function() hist(mtcars$disp)
+#  expect_doppelganger("disp-histogram-base", disp_hist_base)
+#
+#  disp_hist_ggplot <- ggplot(mtcars, aes(disp)) + geom_histogram()
+#  expect_doppelganger("disp-histogram-ggplot", disp_hist_ggplot)
+#})
+#
+
+
