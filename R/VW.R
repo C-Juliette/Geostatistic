@@ -8,6 +8,7 @@
 #'
 #' @examples
 #' VW(matrix(rnorm(15*20, 0, 1), nrow = 15), rprime = 2)
+#'
 VW <- function(Y, rprime){
   facteur_dilatation <- 2*rprime+1
   V <- c()
