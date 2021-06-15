@@ -1,3 +1,12 @@
+#' Title
+#'
+#' @param vector a vector of 2 coordinates
+#'
+#' @return a vector which has the same direction as the one in parameter, but its coordinates are the smallest positive integer
+#' @export
+#'
+#' @examples
+#' direction(c(1,0))
 direction <- function(vector){
   prime_numbers <- c(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
   a <- abs(vector[1])
@@ -23,6 +32,11 @@ direction <- function(vector){
       a <- 1
       b <- 1
     }
+  }
+  if(b<a){
+    temp <- a
+    a <- b
+    b <- temp
   }
 
   direction <- c(a,b)
