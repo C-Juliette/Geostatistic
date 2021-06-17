@@ -17,13 +17,8 @@ actual_correlation <- function(M, a_vector, scale = 1, vect_dir = T){
   if(is.data.frame(M) | is.vector(M)){M <- as.matrix(M)}
   if(!is.numeric(M)){stop("M must contain a vector, matrix or dataframe")}
   #tests on a_vector
-  if(!is.numeric(a_vector)){stop("a_vector must contain a vector, or 1D matrix or dataframe")}
-  if(is.data.frame(a_vector)){a_vector <- as.matrix(a_vector)}
-  if(!is.vector(a_vector)){
-    if(dim(a_vector)[1] != 1 & dim(M)(a_vector)[2] != 1){stop("a_vector must have one dimension only")}
-    else{M <- as.vector(a_vector)}
-    }
-  if(length(a_vector) != 2){stop("a_vector must be a 2D-object")}
+  if(!is.vector(a_vector)){stop("a_vector must contain a vector")}
+  if(length(a_vector) != 2){stop("a_vector must have 2 coordinates")}
   if(!is.numeric(a_vector)){stop("a_vector must contain numbers")}
   #end of tests
   if(vect_dir){vect_dir <- direction(a_vector)}
