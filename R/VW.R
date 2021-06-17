@@ -1,3 +1,13 @@
+#' Variance Within
+#'
+#' @param Y a matrix
+#' @param rprime the radius of blocks. For example, rprime = 1 implies a window of 3*3.
+#'
+#' @return the mean of the variance inside blocks
+#' @export
+#'
+#' @examples
+#' VW(matrix(rnorm(15*20, 0, 1), nrow = 15), rprime = 2)
 VW <- function(Y, rprime){
   facteur_dilatation <- 2*rprime+1
   V <- c()
