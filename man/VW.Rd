@@ -19,4 +19,5 @@ Variance Within
 }
 \examples{
 VW(matrix(rnorm(15*20, 0, 1), nrow = 15), rprime = 2)
+
 }

@@ -36,18 +36,6 @@ test_that("Regular test - 2*2 dataframe case", {
 })
 
 
-#### A revoir cas où on a un vecteur puis un nombre
-test_that("Regular test -  vector case", {
-  # arrange
-  data <- data.frame(Distance_pixels = c(0,1), Distance_km = c(0,1), Empirical_covariance = c(0.25, 0), Empirical_correlation = c(1, NaN))
-  Z <- actual_correlation(c(1:2), c(1,0), vect_dir = F)
-  # act
-  actual <- data
-  # assert
-  expected <- as.data.frame(Z)
-  expect_equal(actual, expected)
-})
-
 test_that("Regular test -  number case", {
   # arrange
   data <- data.frame(Distance_pixels = c(0), Distance_km = c(0), Empirical_covariance = c(0), Empirical_correlation = c(NaN))
@@ -59,17 +47,6 @@ test_that("Regular test -  number case", {
   expect_equal(actual, expected)
 })
 
-
-test_that("Regular test - number case", {
-  # arrange
-  data <- data.frame(Distance_pixels = c(0), Distance_km = c(0), Empirical_covariance = c(0), Empirical_correlation = c(NaN))
-  Z <- actual_correlation(c(1), c(1,0))
-  # act
-  actual <- data
-  # assert
-  expected <- as.data.frame(Z)
-  expect_equal(actual, expected)
-})
 
 test_that("Regular test - scale is correctly changed", {
   # arrange
@@ -85,12 +62,21 @@ test_that("Regular test - scale is correctly changed", {
 test_that("Regular test - direction is correctly changed", {
   # arrange
   # act
-  actual <- actual_correlation(matrix(1:4, nrow = 2), c(4,6), scale = 2)
+  actual <- actual_correlation(matrix(1:4, nrow = 2), c(4,6))
   # assert
-  expected <- actual_correlation(matrix(1:4, nrow = 2), c(2,3), scale = 2)
+  expected <- actual_correlation(matrix(1:4, nrow = 2), c(2,3))
   expect_equal(actual, expected)
 })
 
+test_that("Regular test - a_vector can be a data frame", {
+  # arrange
+  a_vector <- matrix(0:1, nrow = 1)
+  # act
+  actual <- actual_correlation(matrix(1:4, nrow = 2), a_vector)
+  # assert
+  expected <- actual_correlation(matrix(1:4, nrow = 2), c(0,1))
+  expect_equal(actual, expected)
+})
 
 
 ######################## ANOMALY TESTS #####################
@@ -106,11 +92,11 @@ test_that("Anomaly test - error when M is not a vector/matrix/dataframe", {
 
 # On the direction a_vector
 
-test_that("Anomaly test - error when a_vector is not a vector", {
+test_that("Anomaly test - error when a_vector is a string", {
   # arrange
   a_vector <- "matrix(1:4, nrow = 2)"
   # act & assert
-  expect_error(actual_correlation(matrix(1:4, nrow = 2), a_vector), "^a_vector must contain a vector, or 1D matrix or dataframe$")
+  expect_error(actual_correlation(matrix(1:4, nrow = 2), a_vector), "^a_vector must have 2 coordinates$")
 })
 
 
@@ -118,7 +104,14 @@ test_that("Anomaly test - error when a_vector is not a 2D-vector", {
   # arrange
   a_vector <- c(1,2,3)
   # act & assert
-  expect_error(actual_correlation(matrix(1:4, nrow = 2), a_vector), "^a_vector must be a 2D-object$")
+  expect_error(actual_correlation(matrix(1:4, nrow = 2), a_vector), "^a_vector must have 2 coordinates$")
+})
+
+test_that("Anomaly test - error when a_vector is not a 2D-vector", {
+  # arrange
+  a_vector <- as.data.frame(c(1,2,3))
+  # act & assert
+  expect_error(actual_correlation(matrix(1:4, nrow = 2), a_vector), "^a_vector must contain a vector$")
 })
 
 # On the result
