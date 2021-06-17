@@ -68,6 +68,15 @@ test_that("Regular test - direction is correctly changed", {
   expect_equal(actual, expected)
 })
 
+test_that("Regular test - a_vector can be a data frame", {
+  # arrange
+  a_vector <- matrix(0:1, nrow = 1)
+  # act
+  actual <- actual_correlation(matrix(1:4, nrow = 2), a_vector)
+  # assert
+  expected <- actual_correlation(matrix(1:4, nrow = 2), c(0,1))
+  expect_equal(actual, expected)
+})
 
 
 ######################## ANOMALY TESTS #####################
