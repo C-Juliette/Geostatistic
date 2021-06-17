@@ -36,16 +36,16 @@ test_that("Regular test - 2*2 dataframe case", {
 })
 
 
-test_that("Regular test -  number case", {
-  # arrange
-  data <- data.frame(Distance_pixels = c(0), Distance_km = c(0), Empirical_covariance = c(0), Empirical_correlation = c(NaN))
-  Z <- actual_correlation(c(1), c(1,0))
-  # act
-  actual <- data
-  # assert
-  expected <- as.data.frame(Z)
-  expect_equal(actual, expected)
-})
+#test_that("Regular test -  number case", {
+#  # arrange
+#  data <- data.frame(Distance_pixels = c(0), Distance_km = c(0), Empirical_covariance = c(0), Empirical_correlation = c(NaN))
+#  Z <- actual_correlation(c(1), c(1,0))
+#  # act
+#  actual <- data
+#  # assert
+#  expected <- as.data.frame(Z)
+#  expect_equal(actual, expected)
+#})
 
 
 test_that("Regular test - scale is correctly changed", {
@@ -68,16 +68,6 @@ test_that("Regular test - direction is correctly changed", {
   expect_equal(actual, expected)
 })
 
-test_that("Regular test - a_vector can be a data frame", {
-  # arrange
-  a_vector <- matrix(0:1, nrow = 1)
-  # act
-  actual <- actual_correlation(matrix(1:4, nrow = 2), a_vector)
-  # assert
-  expected <- actual_correlation(matrix(1:4, nrow = 2), c(0,1))
-  expect_equal(actual, expected)
-})
-
 
 ######################## ANOMALY TESTS #####################
 
@@ -92,22 +82,22 @@ test_that("Anomaly test - error when M is not a vector/matrix/dataframe", {
 
 # On the direction a_vector
 
-test_that("Anomaly test - error when a_vector is a string", {
+test_that("Anomaly test - error when a_vector has 1 coordinate", {
   # arrange
-  a_vector <- "matrix(1:4, nrow = 2)"
+  a_vector <- "bla"
   # act & assert
   expect_error(actual_correlation(matrix(1:4, nrow = 2), a_vector), "^a_vector must have 2 coordinates$")
 })
 
 
-test_that("Anomaly test - error when a_vector is not a 2D-vector", {
+test_that("Anomaly test - error when a_vector is not a 2 coordinates vector", {
   # arrange
   a_vector <- c(1,2,3)
   # act & assert
   expect_error(actual_correlation(matrix(1:4, nrow = 2), a_vector), "^a_vector must have 2 coordinates$")
 })
 
-test_that("Anomaly test - error when a_vector is not a 2D-vector", {
+test_that("Anomaly test - error when a_vector is a data frame", {
   # arrange
   a_vector <- as.data.frame(c(1,2,3))
   # act & assert
@@ -116,7 +106,7 @@ test_that("Anomaly test - error when a_vector is not a 2D-vector", {
 
 # On the result
 
-test_that("Anomaly test - warning when a_vector is not a 2D-vector", {
+test_that("Anomaly test - warning when the return has infinty result", {
   # arrange
   a_vector <- c(0,1)
   # act & assert

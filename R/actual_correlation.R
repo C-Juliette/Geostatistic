@@ -1,7 +1,7 @@
 #' Title
 #'
 #' @param M a matrix
-#' @param a_vector 2D-vector which give a direction. The correlation and covariance according to the distance are calculated for this direction.
+#' @param a_vector 2 coordinates vector which give a direction. The correlation and covariance according to the distance are calculated for this direction.
 #' @param scale 1 km/pixel by default. This number of km by pixels can eventually be changed.
 #' @param vect_dir true by default. It reshapes the direction Ex: direction c(4,6) is reshaped as c(2,3). c(1,0) is reshaped as c(0,1) because of symetry considerations.
 #'

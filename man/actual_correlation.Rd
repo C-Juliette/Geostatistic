@@ -9,7 +9,7 @@ actual_correlation(M, a_vector, scale = 1, vect_dir = T)
 \arguments{
 \item{M}{a matrix}
 
-\item{a_vector}{2D-vector which give a direction. The correlation and covariance according to the distance are calculated for this direction.}
+\item{a_vector}{2 coordinates vector which give a direction. The correlation and covariance according to the distance are calculated for this direction.}
 
 \item{scale}{1 km/pixel by default. This number of km by pixels can eventually be changed.}
 
