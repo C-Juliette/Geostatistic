@@ -34,10 +34,10 @@ scale_x_continuous <- ggplot2::scale_x_continuous
 #
 #
 
-
-
-
-
+test_that("The plot is the right plot", {
+  M <- matrix(1:100, nrow = 10)
+  expect_snapshot_file("plot_matrix(M)", "matrix1a100.png")
+})
 
 
 ######################## ANOMALY TESTS #####################

@@ -8,6 +8,7 @@
 #' @export
 #'
 #' @examples
+#'
 block_averages <- function(Y, rprime, grand_pixel = TRUE){
   facteur_dilatation <- 2*rprime+1
 
