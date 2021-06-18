@@ -1,3 +1,13 @@
+#' Mean by blocks
+#'
+#' @param Y a matrix
+#' @param rprime the radius of blocks. For example, rprime = 1 implies a window of 3*3.
+#' @param grand_pixel return a matrix with blocks of (2rprime+1)**2 or of 1 pixels only (by default)
+#'
+#' @return
+#' @export
+#'
+#' @examples
 block_averages <- function(Y, rprime, grand_pixel = TRUE){
   facteur_dilatation <- 2*rprime+1
 

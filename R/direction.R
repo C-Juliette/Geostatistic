@@ -1,4 +1,4 @@
-#' Title
+#' Direction
 #'
 #' @param vector a vector of 2 coordinates
 #'

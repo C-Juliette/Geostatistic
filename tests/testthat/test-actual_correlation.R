@@ -68,6 +68,15 @@ test_that("Regular test - direction is correctly changed", {
   expect_equal(actual, expected)
 })
 
+test_that("Regular test - direction is not changed", {
+  # arrange
+  # act
+  actual <- actual_correlation(matrix(1:4, nrow = 2), c(4,6), vect_dir = F)
+  # assert
+  expected <- actual_correlation(matrix(1:4, nrow = 2), c(4,6))
+  expect_equal(actual, expected)
+})
+
 
 ######################## ANOMALY TESTS #####################
 
@@ -104,6 +113,13 @@ test_that("Anomaly test - error when a_vector is a data frame", {
   expect_error(actual_correlation(matrix(1:4, nrow = 2), a_vector), "^a_vector must contain a vector$")
 })
 
+test_that("Anomaly test - error when a_vector does not contain numbers", {
+  # arrange
+  a_vector <- c("1", "2")
+  # act & assert
+  expect_error(actual_correlation(matrix(1:4, nrow = 2), a_vector), "^a_vector must contain numbers")
+})
+
 # On the result
 
 test_that("Anomaly test - warning when the return has infinty result", {
@@ -112,4 +128,5 @@ test_that("Anomaly test - warning when the return has infinty result", {
   # act & assert
   expect_warning(actual_correlation(matrix(1:4, nrow = 1), a_vector), "^the result contains infinity NaN$")
 })
+
 

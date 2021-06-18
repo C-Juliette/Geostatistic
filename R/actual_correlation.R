@@ -1,4 +1,4 @@
-#' Title
+#' Actual correlation
 #'
 #' @param M a matrix
 #' @param a_vector 2 coordinates vector which give a direction. The correlation and covariance according to the distance are calculated for this direction.

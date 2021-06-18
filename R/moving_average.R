@@ -1,6 +1,6 @@
 isInteger <- ttutils::isInteger
 
-#' moving average
+#' Moving average
 #'
 #' Create a new map/matrix by doing a moving average on a matrix
 #'
