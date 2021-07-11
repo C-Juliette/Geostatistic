@@ -13,7 +13,8 @@
 #'
 variance <- function(M){
   if (is.data.frame(M)){M <- as.matrix(M)}
-  if (!is.numeric(M)){stop("M must be a number or a vector/matrix/dataframe of numbers")}
-  return(mean(M**2, na.rm =T)- mean(M, na.rm =T)**2)
+  if (!is.vector(M) & !is.matrix(M)){stop("M must be a number/vector/matrix/dataframe")}
+  if (!is.numeric(M)){stop("M must contain numeric values")}
+  return(mean(M**2, na.rm = TRUE) - mean(M, na.rm = TRUE)**2)
 }
 

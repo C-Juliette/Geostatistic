@@ -2,7 +2,7 @@
 % Please edit documentation in R/direction.R
 \name{direction}
 \alias{direction}
-\title{Title}
+\title{Direction}
 \usage{
 direction(vector)
 }
@@ -13,7 +13,7 @@ direction(vector)
 a vector which has the same direction as the one in parameter, but its coordinates are the smallest positive integer
 }
 \description{
-Title
+Direction
 }
 \examples{
 direction(c(1,0))

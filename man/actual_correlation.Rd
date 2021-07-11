@@ -2,7 +2,7 @@
 % Please edit documentation in R/actual_correlation.R
 \name{actual_correlation}
 \alias{actual_correlation}
-\title{Title}
+\title{Actual correlation}
 \usage{
 actual_correlation(M, a_vector, scale = 1, vect_dir = T)
 }
@@ -21,7 +21,7 @@ Warning : the more the distance between points increases, the less the calculus 
 each other than points close to each other. That's to say, there are less and less couples of points to do the calculation as the distance between them increases.
 }
 \description{
-Title
+Actual correlation
 }
 \examples{
 actual_correlation(matrix(rnorm(1:50), nrow = 10), c(1,2))

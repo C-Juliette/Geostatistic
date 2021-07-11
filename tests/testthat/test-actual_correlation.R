@@ -130,3 +130,5 @@ test_that("Anomaly test - warning when the return has infinty result", {
 })
 
 
+
+

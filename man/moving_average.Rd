@@ -2,7 +2,7 @@
 % Please edit documentation in R/moving_average.R
 \name{moving_average}
 \alias{moving_average}
-\title{moving average}
+\title{Moving average}
 \usage{
 moving_average(Z, r)
 }

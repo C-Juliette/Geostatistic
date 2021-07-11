@@ -3,6 +3,7 @@
 export(VB)
 export(VW)
 export(actual_correlation)
+export(block_averages)
 export(direction)
 export(long_shaped_matrix)
 export(moving_average)
