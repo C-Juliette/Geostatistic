@@ -8,6 +8,7 @@ guides <- ggplot2::guides
 guide_colorbar <- ggplot2::guide_colorbar
 scale_y_continuous <- ggplot2::scale_y_continuous
 scale_x_continuous <- ggplot2::scale_x_continuous
+scale_y_reverse <- ggplot2::scale_y_reverse
 
 #' Plot a matrix
 #'
@@ -28,6 +29,7 @@ scale_x_continuous <- ggplot2::scale_x_continuous
 #' plot_matrix(matrix(rbinom(10*10, 1, 0.5), nrow = 10))
 plot_matrix <- function(M, r = "", paletteinf = "", palettesup = "", titre = "", nom_axeX = "", nom_axeY = "", echelle = "Scale"){
  # if (is.data.frame(M)){M <- as.matrix(M)}
+  M <- t(M)
   if (!is.numeric(M)){stop("M must contain numbers")}
 
   if(titre == ""){titre <- stringr::str_c("Var = " ,as.character(round(variance(M), 4)),  sep = "")}
@@ -44,8 +46,9 @@ plot_matrix <- function(M, r = "", paletteinf = "", palettesup = "", titre = "",
          x = nom_axeX,
          y = nom_axeY) +
     guides(fill = guide_colorbar(title = echelle))+
-    scale_y_continuous(breaks= scales::pretty_breaks())+
-    scale_x_continuous(breaks= scales::pretty_breaks())
+    #scale_y_continuous()+
+    scale_y_reverse(breaks= scales::pretty_breaks())+
+    scale_x_continuous(breaks= scales::pretty_breaks(), position = "top")
   return(p)
   }
 
