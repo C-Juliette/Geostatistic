@@ -1,4 +1,4 @@
-Package: MonPackage
+Package: geostatistics
 Title: Geostatistic maps
 Version: 0.0.0.9000
 Authors@R: 
@@ -27,4 +27,5 @@ Imports:
     scales,
     ttutils,
     stats,
-    rlang
+    rlang,
+    rlist

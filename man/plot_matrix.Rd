@@ -41,4 +41,5 @@ Plot a matrix
 \examples{
 
 plot_matrix(matrix(rbinom(10*10, 1, 0.5), nrow = 10))
+plot_matrix(matrix(rbinom(10*10, 1, 0.5), nrow = 10), r = 2)
 }

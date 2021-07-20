@@ -39,7 +39,7 @@ plot_expected_cov <- function(sigma_Z, the_radius, the_directions, xlabs ="Dista
     if (rayon == "Radius_km_unit"){p <- p + geom_point(aes(col = factor(Radius_km_unit), shape  = Direction))}
 
     if(connect == TRUE){
-      if (rayon == "Radius_pixels"){p <- p + geom_line(aes(col = factor(Radius_pixels), shape = Direction))}
+      if (rayon == "Radius_pixels"){p <- p + geom_line(aes(col = factor(Radius_pixels), group = interaction(Direction, Radius_pixels)))}
       if (rayon == "Radius_km_unit"){p <- p + geom_line(aes(col = factor(Radius_km_unit)))}
     }
   }
